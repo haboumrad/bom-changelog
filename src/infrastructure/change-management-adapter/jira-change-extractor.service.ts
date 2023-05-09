@@ -1,0 +1,63 @@
+import { Injectable } from '@nestjs/common';
+import { ChangeExtractor } from '../../domain/change-management/port/change-extractor';
+import { Change } from '../../domain/change-management/model/Changelog';
+import { Buffer } from 'buffer';
+import axios from 'axios';
+import {
+  JiraChangeExtractorConfiguration,
+  JiraChangeExtractorConfigurationService,
+} from './configuration/jira-change-extractor-configuration.service';
+
+@Injectable()
+export class JiraChangeExtractor implements ChangeExtractor {
+  private readonly configuration: JiraChangeExtractorConfiguration;
+  constructor(
+    private readonly configurationService: JiraChangeExtractorConfigurationService,
+  ) {
+    this.configuration = this.configurationService.getConfig();
+  }
+
+  async getChange(id: string): Promise<Change> {
+    const basicAuth = Buffer.from(
+      `${this.configuration.jiraUser}:${this.configuration.jiraToken}`,
+    ).toString('base64');
+    const change = await axios
+      .get(`${this.configuration.jiraUrl}/rest/api/2/issue/${id}`, {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Basic ${basicAuth}`,
+        },
+      })
+      .then((response) => {
+        if (response.status == 200) {
+          return response.data as JiraChange;
+        }
+        throw new Error(`Error while getting issue. ${response}`);
+      });
+    return this.toChange(change);
+  }
+
+  private toChange(jiraChange: JiraChange): Change {
+    return {
+      id: jiraChange.key,
+      url: `${this.configuration.jiraUrl}/browse/${jiraChange.key}`,
+      summary: jiraChange.fields.summary,
+      type: jiraChange.fields.issuetype.name,
+      status: jiraChange.fields.status.name,
+    };
+  }
+}
+
+type JiraChange = {
+  key: string;
+  self: string;
+  fields: {
+    issuetype: {
+      name: string;
+    };
+    status: {
+      name: string;
+    };
+    summary: string;
+  };
+};
