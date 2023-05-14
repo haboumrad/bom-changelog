@@ -6,6 +6,7 @@ This is the very first version of this project. It is still in progress.
 # TODO
 - complete documentation: README, architecture description and extensibility
 - error handling
+- add jira project supported to the JIRA extractor in order to avoid a remote call when the scope does not match the id project prefix
 - add command line support (for now arguments are fetched from env vars)
 - add support for removing system from a BOM version
 - add tests

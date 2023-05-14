@@ -225,20 +225,20 @@ export class ConfluenceExporter implements BomExporter {
       if (changeWithCommit.change) {
         contentBuilder.appendLinkExternalUrl(id, url);
       } else {
-        contentBuilder.appendCDATA(id);
+        contentBuilder.appendParagraph(id);
       }
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendCDATA(this.getChangeStatus(changeWithCommit));
+      contentBuilder.appendParagraph(this.getChangeStatus(changeWithCommit));
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendCDATA(this.getChangeType(changeWithCommit));
+      contentBuilder.appendParagraph(this.getChangeType(changeWithCommit));
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendCDATA(this.getChangeSummary(changeWithCommit));
+      contentBuilder.appendParagraph(this.getChangeSummary(changeWithCommit));
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendCDATA(
+      contentBuilder.appendParagraph(
         changeWithCommit.conventionalCommit.commit.committer.email,
       );
       contentBuilder.appendTableLineColumnEnd();
@@ -374,7 +374,6 @@ export class ConfluenceExporter implements BomExporter {
         systemPage.pageName,
       );
       contentBuilder.appendTableLineColumnEnd();
-
       contentBuilder.appendTableLineEnd();
     });
     contentBuilder.appendTableEnd();

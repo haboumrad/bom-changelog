@@ -4,6 +4,7 @@ import { COMMIT_EXTRACTOR, CommitExtractor } from '../port/commit-extractor';
 import { ConventionalCommit } from '../model/Commit';
 
 import * as conventionalCommitsParser from 'conventional-commits-parser';
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class RepositoryCommitParserService {
@@ -23,12 +24,13 @@ export class RepositoryCommitParserService {
     const result = new Map<string, ConventionalCommit>(
       commits.map((commit) => {
         const parsedCommit = conventionalCommitsParser.sync(commit.message);
+        const scope = parsedCommit.scope ? parsedCommit.scope : randomUUID();
         return [
-          parsedCommit.scope,
+          scope,
           {
             commit,
-            scope: parsedCommit.scope,
-            subject: parsedCommit.subject.trim(),
+            scope,
+            subject: parsedCommit?.subject?.trim(),
             type: parsedCommit.type,
           },
         ];

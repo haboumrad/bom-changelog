@@ -21,7 +21,7 @@ export class JiraChangeExtractor implements ChangeExtractor {
     const basicAuth = Buffer.from(
       `${this.configuration.jiraUser}:${this.configuration.jiraToken}`,
     ).toString('base64');
-    const change = await axios
+    return axios
       .get(`${this.configuration.jiraUrl}/rest/api/2/issue/${id}`, {
         headers: {
           Accept: 'application/json',
@@ -33,8 +33,8 @@ export class JiraChangeExtractor implements ChangeExtractor {
           return response.data as JiraChange;
         }
         throw new Error(`Error while getting issue. ${response}`);
-      });
-    return this.toChange(change);
+      })
+      .then((change) => this.toChange(change));
   }
 
   private toChange(jiraChange: JiraChange): Change {
