@@ -5,6 +5,7 @@ import {
   BomExporter,
   SystemPageWithChangeLog,
 } from '../port/bom-exporter';
+import { RepoStatus } from '../../bom-diff/model/bom';
 
 @Injectable()
 export class BomChangelogExporterService {
@@ -17,6 +18,12 @@ export class BomChangelogExporterService {
     console.log(`Exporting bom changelog`);
     const systemPages: SystemPageWithChangeLog[] = [];
     for (const repositoryChangeLog of bomChangeLog.systems) {
+      if (repositoryChangeLog.repository.status === RepoStatus.UNCHANGED) {
+        systemPages.push({
+          repositoryChangeLog,
+        });
+        continue;
+      }
       const systemPageName =
         repositoryChangeLog.repository.systemRepository.label;
       const systemPageId = await this.bomExporter.getOrCreateSystemPage(

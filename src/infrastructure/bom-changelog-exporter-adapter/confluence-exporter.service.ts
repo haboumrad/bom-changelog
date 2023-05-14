@@ -8,7 +8,7 @@ import {
   SystemPageWithChangeLog,
 } from '../../domain/bom-changelog-exporter/port/bom-exporter';
 import { RepositoryChangeLog } from 'src/domain/bom-changelog-generator/model/bom-changelog';
-import { Repository, Version } from 'src/domain/bom-diff/model/bom';
+import { Repository, RepoStatus, Version } from 'src/domain/bom-diff/model/bom';
 import { ConfluenceContentBuilder } from './confluence-content-builder';
 import axios from 'axios';
 import { ConfluenceUtils } from './confluence-utils';
@@ -369,10 +369,14 @@ export class ConfluenceExporter implements BomExporter {
       contentBuilder.appendTableLineColumnEnd();
       //release note link
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendConfluenceLink(
-        systemPage.pageName,
-        systemPage.pageName,
-      );
+      if (repoStatus === RepoStatus.UNCHANGED) {
+        contentBuilder.appendParagraph('-');
+      } else {
+        contentBuilder.appendConfluenceLink(
+          systemPage.pageName,
+          systemPage.pageName,
+        );
+      }
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineEnd();
     });

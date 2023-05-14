@@ -25,7 +25,7 @@ export type BomPageId = string;
 export type SystemPageId = string;
 
 export type SystemPageWithChangeLog = {
-  pageId: SystemPageId;
-  pageName: string;
+  pageId?: SystemPageId;
+  pageName?: string;
   repositoryChangeLog: RepositoryChangeLog;
 };
