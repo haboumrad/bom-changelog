@@ -8,7 +8,7 @@ import { validateCommandLineEnvVars } from './configuration/command-line-env-var
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.command-line'],
+      envFilePath: ['.env.local.command-line', '.env.command-line'],
       isGlobal: false,
       validate: validateCommandLineEnvVars,
     }),
