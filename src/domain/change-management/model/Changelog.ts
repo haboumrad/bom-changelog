@@ -1,7 +1,12 @@
-import { ConventionalCommit } from '../../repository-commit-parser/model/Commit';
+import {
+  Commit,
+  ConventionalCommit,
+} from '../../repository-commit-parser/model/Commit';
 
 export type ChangeLog = {
-  changeLog: ChangeWithCommit[];
+  validChangeLog: ChangeWithCommit[];
+  filteredChangeLog: ConventionalCommit[];
+  invalidChangeLog: Commit[];
 };
 
 export type ChangeWithCommit = {

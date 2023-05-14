@@ -16,6 +16,10 @@ import {
   ConfluenceExporterConfiguration,
   ConfluenceExporterConfigurationService,
 } from './configuration/confluence-exporter-configuration.service';
+import {
+  Commit,
+  ConventionalCommit,
+} from '../../domain/repository-commit-parser/model/Commit';
 
 @Injectable()
 export class ConfluenceExporter implements BomExporter {
@@ -210,7 +214,82 @@ export class ConfluenceExporter implements BomExporter {
     contentBuilder.appendTableLineColumnEnd();
     contentBuilder.appendTableLineEnd();
     contentBuilder.appendTableEnd();
-    contentBuilder.appendHeading('Changelog');
+    this.generateChangeLogTable(
+      'Changelog',
+      contentBuilder,
+      repositoryChangeLog.validChangeLog,
+    );
+    this.generateFilteredChangeLogTable(
+      'Filtered changelog',
+      contentBuilder,
+      repositoryChangeLog.filteredChangeLog,
+    );
+    this.generateUnprocessedCommitsTable(
+      'Unprocessed commits',
+      contentBuilder,
+      repositoryChangeLog.invalidChangeLog,
+    );
+    return contentBuilder.build();
+  }
+
+  private generateUnprocessedCommitsTable(
+    sectionName: string,
+    contentBuilder: ConfluenceContentBuilder,
+    unprocessedCommits: Commit[],
+  ) {
+    if (unprocessedCommits.length === 0) {
+      return;
+    }
+    contentBuilder.appendHeading(sectionName);
+    contentBuilder.appendTableStart(['Message', 'Committer']);
+    unprocessedCommits.forEach((commit) => {
+      contentBuilder.appendTableLineStart();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendLinkExternalUrl(commit.message, commit.id);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendParagraph(commit.committer.name);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineEnd();
+    });
+    contentBuilder.appendTableEnd();
+  }
+
+  private generateFilteredChangeLogTable(
+    sectionName: string,
+    contentBuilder: ConfluenceContentBuilder,
+    filteredChangeLog: ConventionalCommit[],
+  ) {
+    if (filteredChangeLog.length === 0) {
+      return;
+    }
+    contentBuilder.appendHeading(sectionName);
+    contentBuilder.appendTableStart(['Key', 'Type', 'Summary', 'Committer']);
+    filteredChangeLog.forEach((conventionalCommit) => {
+      contentBuilder.appendTableLineStart();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendParagraph(conventionalCommit.scope);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendParagraph(conventionalCommit.type);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendParagraph(conventionalCommit.subject);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineColumnStart();
+      contentBuilder.appendParagraph(conventionalCommit.commit.committer.name);
+      contentBuilder.appendTableLineColumnEnd();
+      contentBuilder.appendTableLineEnd();
+    });
+    contentBuilder.appendTableEnd();
+  }
+
+  private generateChangeLogTable(
+    sectionName: string,
+    contentBuilder: ConfluenceContentBuilder,
+    validChangeLog: ChangeWithCommit[],
+  ) {
+    contentBuilder.appendHeading(sectionName);
     contentBuilder.appendTableStart([
       'Key',
       'Status',
@@ -218,7 +297,7 @@ export class ConfluenceExporter implements BomExporter {
       'Summary',
       'Committer',
     ]);
-    repositoryChangeLog.changeLog.forEach((changeWithCommit) => {
+    validChangeLog.forEach((changeWithCommit) => {
       contentBuilder.appendTableLineStart();
       contentBuilder.appendTableLineColumnStart();
       const [id, url] = this.getChangeId(changeWithCommit);
@@ -239,13 +318,12 @@ export class ConfluenceExporter implements BomExporter {
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
       contentBuilder.appendParagraph(
-        changeWithCommit.conventionalCommit.commit.committer.email,
+        changeWithCommit.conventionalCommit.commit.committer.name,
       );
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineEnd();
     });
     contentBuilder.appendTableEnd();
-    return contentBuilder.build();
   }
 
   private getChangeId(changeWithCommit: ChangeWithCommit): [string, string] {

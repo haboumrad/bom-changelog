@@ -15,6 +15,8 @@ This is the very first version of this project. It is still in progress.
   - multiple conventional commits with the same scope should lead to only one changelog line
   - generation of changelog with commit having valid jira issue
   - generation of changelog with commit having unknown jira issue
+  - do not call jira when the change does not match the configured projects
+  - do not generate system pages when system is unchanged
 - add CI pipeline
 
 # License

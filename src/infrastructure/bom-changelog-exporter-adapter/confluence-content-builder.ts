@@ -56,7 +56,7 @@ export class ConfluenceContentBuilder {
     linkName: string,
     linkUrl: string,
   ): ConfluenceContentBuilder {
-    this.content.push(`<a href="${linkUrl}">${linkName}</a>`);
+    this.content.push(`<a href="${linkUrl}"><![CDATA[${linkName}]]></a>`);
     return this;
   }
 

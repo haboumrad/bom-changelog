@@ -1,7 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ChangeLog, ChangeWithCommit } from '../model/Changelog';
-import { ConventionalCommit } from '../../repository-commit-parser/model/Commit';
+import {
+  Commit,
+  ConventionalCommit,
+  isConventionalCommit,
+  ParsedCommit,
+} from '../../repository-commit-parser/model/Commit';
 import { CHANGE_EXTRACTOR, ChangeExtractor } from '../port/change-extractor';
+import { ChangeManagementOptions } from '../../../application/command-line/configuration/command-line-configuration.service';
 
 @Injectable()
 export class ChangeLogService {
@@ -10,25 +16,49 @@ export class ChangeLogService {
     private readonly changeExtractor: ChangeExtractor,
   ) {}
 
-  async getChangeLog(commits: ConventionalCommit[]): Promise<ChangeLog> {
-    const changes: ChangeWithCommit[] = [];
+  async getChangeLog(
+    commits: ParsedCommit[],
+    options: ChangeManagementOptions,
+  ): Promise<ChangeLog> {
+    const validChangeLog: ChangeWithCommit[] = [];
+    const filteredChangeLog: ConventionalCommit[] = [];
+    const invalidChangeLog: Commit[] = [];
+
     for (const commit of commits) {
-      const id = commit.scope;
+      if (!isConventionalCommit(commit)) {
+        invalidChangeLog.push(commit);
+        continue;
+      }
+      if (!this.matchProjectsFilter(commit.scope, options.projectsPrefix)) {
+        console.log(
+          `Error ${commit.scope} does not match the project filters: ${options.projectsPrefix}`,
+        );
+        filteredChangeLog.push(commit);
+        continue;
+      }
       try {
-        const change = await this.changeExtractor.getChange(id);
-        changes.push({
+        const change = await this.changeExtractor.getChange(commit.scope);
+        validChangeLog.push({
           conventionalCommit: commit,
           change,
         });
       } catch (e) {
         console.warn(
-          `Error while fetching issue details for ${id}: ${JSON.stringify(e)}`,
+          `Error while fetching issue details for ${
+            commit.scope
+          }: ${JSON.stringify(e)}`,
         );
-        changes.push({
+        validChangeLog.push({
           conventionalCommit: commit,
         });
       }
     }
-    return { changeLog: changes };
+    return { validChangeLog, filteredChangeLog, invalidChangeLog };
+  }
+
+  private matchProjectsFilter(id: string, projectsPrefix: string[]): boolean {
+    return Boolean(
+      projectsPrefix.find((projectPrefix) => id.startsWith(projectPrefix)),
+    );
   }
 }

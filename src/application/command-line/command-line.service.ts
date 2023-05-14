@@ -12,6 +12,7 @@ export class CommandLineService {
   async run(): Promise<void> {
     return this.appEntrypointService.exportChangeLog(
       this.configuration.getChangeLogRequest(),
+      this.configuration.getChangeLogOptions(),
     );
   }
 }

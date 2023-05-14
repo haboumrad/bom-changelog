@@ -17,6 +17,10 @@ class CommandLineEnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   BOM_REPOSITORY_TO_VERSION!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  CHANGE_PROJECT_PREFIX_FILTER!: string;
 }
 
 export const validateCommandLineEnvVars = (config: Record<string, unknown>) => {

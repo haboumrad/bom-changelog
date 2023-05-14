@@ -61,12 +61,12 @@ export class GithubCommitExtractor implements CommitExtractor {
   }
 
   private async toCommits(githubCommits: GithubCommit[]): Promise<Commit[]> {
-    // console.log(`result compare github: ${JSON.stringify(githubCommits)}`);
     return githubCommits.map((ghCommit) => {
       return {
         message: ghCommit.commit.message,
+        id: ghCommit.html_url,
         committer: {
-          name: ghCommit.commit.committer.name,
+          name: ghCommit.commit.author.name,
           email: ghCommit.commit.committer.email,
         },
       };
@@ -75,8 +75,12 @@ export class GithubCommitExtractor implements CommitExtractor {
 }
 
 type GithubCommit = {
+  html_url: string;
   commit: {
     message: string;
+    author: {
+      name: string;
+    };
     committer: {
       name: string;
       email: string;

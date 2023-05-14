@@ -8,6 +8,18 @@ export class CommandLineConfigurationService {
     private appConfigService: ConfigService<Record<string, unknown>, true>,
   ) {}
 
+  getChangeLogOptions(): ChangeLogOptions {
+    return {
+      changeManagement: {
+        projectsPrefix: this.appConfigService
+          .get<string>('CHANGE_PROJECT_PREFIX_FILTER', {
+            infer: true,
+          })
+          .split(','),
+      },
+    };
+  }
+
   getChangeLogRequest(): BOMChangeLogRequest {
     return {
       bomRepository: {
@@ -37,3 +49,11 @@ export class CommandLineConfigurationService {
     };
   }
 }
+
+export type ChangeLogOptions = {
+  changeManagement: ChangeManagementOptions;
+};
+
+export type ChangeManagementOptions = {
+  projectsPrefix: string[];
+};

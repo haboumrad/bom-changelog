@@ -7,6 +7,7 @@ import {
   BOMChangeLogResponse,
   RepositoryChangeLog,
 } from '../model/bom-changelog';
+import { ChangeLogOptions } from '../../../application/command-line/configuration/command-line-configuration.service';
 
 @Injectable()
 export class BomChangelogGeneratorService {
@@ -18,6 +19,7 @@ export class BomChangelogGeneratorService {
 
   async generateChangeLog(
     bomChangeLogRequest: BOMChangeLogRequest,
+    changeLogOptions: ChangeLogOptions,
   ): Promise<BOMChangeLogResponse> {
     const result: RepositoryChangeLog[] = [];
 
@@ -25,12 +27,12 @@ export class BomChangelogGeneratorService {
       bomChangeLogRequest,
     );
     for (const repoDiffStatus of bomDiffResponse.systems) {
-      const conventionalCommits =
-        await this.repositoryCommitParser.getConventionalCommits(
-          repoDiffStatus,
-        );
+      const parsedCommits = await this.repositoryCommitParser.getParsedCommits(
+        repoDiffStatus,
+      );
       const repoChangeLog = await this.changeLogService.getChangeLog(
-        conventionalCommits,
+        parsedCommits,
+        changeLogOptions.changeManagement,
       );
       result.push({
         repository: {
