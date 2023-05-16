@@ -7,7 +7,7 @@ async function bootstrap() {
   const commandLineService = app
     .select(CommandLineModule)
     .get(CommandLineService, { strict: true });
-  commandLineService.run();
+  await commandLineService.run();
 
   await app.close();
 }

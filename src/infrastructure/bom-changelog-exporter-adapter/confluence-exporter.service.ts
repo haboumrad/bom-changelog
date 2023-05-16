@@ -290,13 +290,7 @@ export class ConfluenceExporter implements BomExporter {
     validChangeLog: ChangeWithCommit[],
   ) {
     contentBuilder.appendHeading(sectionName);
-    contentBuilder.appendTableStart([
-      'Key',
-      'Status',
-      'Type',
-      'Summary',
-      'Committer',
-    ]);
+    contentBuilder.appendTableStart(['Key', 'Type', 'Summary', 'Committer']);
     validChangeLog.forEach((changeWithCommit) => {
       contentBuilder.appendTableLineStart();
       contentBuilder.appendTableLineColumnStart();
@@ -306,9 +300,6 @@ export class ConfluenceExporter implements BomExporter {
       } else {
         contentBuilder.appendParagraph(id);
       }
-      contentBuilder.appendTableLineColumnEnd();
-      contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendParagraph(this.getChangeStatus(changeWithCommit));
       contentBuilder.appendTableLineColumnEnd();
       contentBuilder.appendTableLineColumnStart();
       contentBuilder.appendParagraph(this.getChangeType(changeWithCommit));
@@ -331,13 +322,6 @@ export class ConfluenceExporter implements BomExporter {
       return [changeWithCommit.change.id, changeWithCommit.change.url];
     }
     return [changeWithCommit.conventionalCommit.scope, ''];
-  }
-
-  private getChangeStatus(changeWithCommit: ChangeWithCommit): string {
-    if (changeWithCommit.change) {
-      return changeWithCommit.change.status;
-    }
-    return '-';
   }
 
   private getChangeType(changeWithCommit: ChangeWithCommit): string {
