@@ -1,0 +1,21 @@
+{
+  "request": {
+    "url": "https://test.jira.atlassian.net/rest/api/2/issue/PROJ-DOES-NOT-EXIST-1",
+    "headers": {
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic dGVzdEBqaXJhLmNvbTpURVNUX0pJUkFfVE9LRU4="
+      }
+    }
+  },
+  "response": {
+    "status": 404,
+    "error":{
+      "message": "Request failed with status code 404",
+      "name": "AxiosError",
+      "stack": "AxiosError: Request failed with status code 404\n    at settle (/Users/haboumrad/data/repositories/perso/bom-changelog/node_modules/axios/lib/core/settle.js:19:12)\n    at BrotliDecompress.handleStreamEnd (/Users/haboumrad/data/repositories/perso/bom-changelog/node_modules/axios/lib/adapters/http.js:556:11)\n    at BrotliDecompress.emit (node:events:525:35)\n    at endReadableNT (node:internal/streams/readable:1358:12)\n    at processTicksAndRejections (node:internal/process/task_queues:83:21)",
+      "code": "ERR_BAD_REQUEST",
+      "status": 404
+    }
+  }
+}

@@ -9,7 +9,7 @@ import { ConfluenceExporterConfigurationService } from './configuration/confluen
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        '.env.local.confluence-bom-change-log-exporter-adapter',
+        `envs/${process.env.NODE_ENV}/.env.confluence-bom-change-log-exporter-adapter`,
         '.env.confluence-bom-change-log-exporter-adapter',
       ],
       isGlobal: false,

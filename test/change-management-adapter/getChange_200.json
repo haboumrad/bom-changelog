@@ -1,0 +1,198 @@
+{
+  "request": {
+    "url": "https://test.jira.atlassian.net/rest/api/2/issue/PROJ-1",
+    "headers": {
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic dGVzdEBqaXJhLmNvbTpURVNUX0pJUkFfVE9LRU4="
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations,customfield_10010.requestTypePractice",
+      "id": "10000",
+      "self": "https://test.jira.atlassian.net/rest/api/2/issue/10000",
+      "key": "PROJ-1",
+      "fields": {
+        "statuscategorychangedate": "2023-05-06T23:06:02.700+0200",
+        "issuetype": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/issuetype/10005",
+          "id": "10005",
+          "description": "Bugs track problems or errors.",
+          "iconUrl": "https://test.jira.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+          "name": "Bug",
+          "subtask": false,
+          "avatarId": 10303,
+          "entityId": "b5047021-386e-4e3a-bcf8-50e2144a21c2",
+          "hierarchyLevel": 0
+        },
+        "timespent": null,
+        "customfield_10030": null,
+        "project": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/project/10000",
+          "id": "10000",
+          "key": "PROJ",
+          "name": "PROJA",
+          "projectTypeKey": "software",
+          "simplified": true,
+          "avatarUrls": {
+            "48x48": "https://test.jira.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10412",
+            "24x24": "https://test.jira.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10412?size=small",
+            "16x16": "https://test.jira.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+            "32x32": "https://test.jira.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10412?size=medium"
+          }
+        },
+        "fixVersions": [],
+        "aggregatetimespent": null,
+        "resolution": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/resolution/10000",
+          "id": "10000",
+          "description": "Work has been completed on this issue.",
+          "name": "Done"
+        },
+        "customfield_10027": null,
+        "customfield_10028": null,
+        "customfield_10029": null,
+        "resolutiondate": "2023-05-06T23:06:02.691+0200",
+        "workratio": -1,
+        "watches": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/issue/PROJ-1/watchers",
+          "watchCount": 1,
+          "isWatching": true
+        },
+        "lastViewed": "2023-05-14T20:46:18.729+0200",
+        "issuerestriction": {
+          "issuerestrictions": {},
+          "shouldDisplay": true
+        },
+        "created": "2023-05-06T23:05:51.136+0200",
+        "customfield_10020": null,
+        "customfield_10021": null,
+        "customfield_10022": null,
+        "priority": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/priority/3",
+          "iconUrl": "https://test.jira.atlassian.net/images/icons/priorities/medium.svg",
+          "name": "Medium",
+          "id": "3"
+        },
+        "customfield_10023": null,
+        "customfield_10024": null,
+        "customfield_10025": "10000_*:*_1_*:*_9297_*|*_10002_*:*_1_*:*_0_*|*_10001_*:*_1_*:*_2287",
+        "labels": [],
+        "customfield_10026": null,
+        "customfield_10016": null,
+        "customfield_10017": null,
+        "customfield_10018": {
+          "hasEpicLinkFieldDependency": false,
+          "showField": false,
+          "nonEditableReason": {
+            "reason": "PLUGIN_LICENSE_ERROR",
+            "message": "The Parent Link is only available to Jira Premium users."
+          }
+        },
+        "customfield_10019": "0|hzzzzz:",
+        "timeestimate": null,
+        "aggregatetimeoriginalestimate": null,
+        "versions": [],
+        "issuelinks": [],
+        "assignee": null,
+        "updated": "2023-05-06T23:06:02.700+0200",
+        "status": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/status/10002",
+          "description": "",
+          "iconUrl": "https://test.jira.atlassian.net/",
+          "name": "Done",
+          "id": "10002",
+          "statusCategory": {
+            "self": "https://test.jira.atlassian.net/rest/api/2/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "components": [],
+        "timeoriginalestimate": null,
+        "description": null,
+        "customfield_10010": null,
+        "customfield_10014": null,
+        "customfield_10015": null,
+        "timetracking": {},
+        "customfield_10005": null,
+        "customfield_10006": null,
+        "customfield_10007": null,
+        "security": null,
+        "customfield_10008": null,
+        "aggregatetimeestimate": null,
+        "attachment": [],
+        "customfield_10009": null,
+        "summary": "fix log format",
+        "creator": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/user?accountId=557058%3A2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+          "accountId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+          "emailAddress": "hadi.abou.mrad@gmail.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "24x24": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "16x16": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "32x32": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png"
+          },
+          "displayName": "Hadi Abou Mrad",
+          "active": true,
+          "timeZone": "Europe/Paris",
+          "accountType": "atlassian"
+        },
+        "subtasks": [],
+        "reporter": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/user?accountId=557058%3A2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+          "accountId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+          "emailAddress": "hadi.abou.mrad@gmail.com",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "24x24": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "16x16": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png",
+            "32x32": "https://secure.gravatar.com/avatar/e8814807456962ce7b62c94c2ab1f873?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FHM-2.png"
+          },
+          "displayName": "Hadi Abou Mrad",
+          "active": true,
+          "timeZone": "Europe/Paris",
+          "accountType": "atlassian"
+        },
+        "aggregateprogress": {
+          "progress": 0,
+          "total": 0
+        },
+        "customfield_10001": null,
+        "customfield_10002": null,
+        "customfield_10003": null,
+        "customfield_10004": null,
+        "environment": null,
+        "duedate": null,
+        "progress": {
+          "progress": 0,
+          "total": 0
+        },
+        "votes": {
+          "self": "https://test.jira.atlassian.net/rest/api/2/issue/PROJ-1/votes",
+          "votes": 0,
+          "hasVoted": false
+        },
+        "comment": {
+          "comments": [],
+          "self": "https://test.jira.atlassian.net/rest/api/2/issue/10000/comment",
+          "maxResults": 0,
+          "total": 0,
+          "startAt": 0
+        },
+        "worklog": {
+          "startAt": 0,
+          "maxResults": 20,
+          "total": 0,
+          "worklogs": []
+        }
+      }
+    }
+  }
+}

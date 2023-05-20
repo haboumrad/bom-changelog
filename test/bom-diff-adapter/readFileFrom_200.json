@@ -1,0 +1,33 @@
+{
+  "request": {
+    "url": "https://api.github.com/repos/haboumrad/bom-sample/contents/bom.yml?ref=0.0.2",
+    "headers": {
+      "headers": {
+        "Accept": "application/vnd.github+json",
+        "Authorization": "Bearer TEST_GITHUB_TOKEN",
+        "X-GitHub-Api-Version": "2022-11-28"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "name": "bom.yml",
+      "path": "bom.yml",
+      "sha": "b18c11c6c6fd16fd9278a80d3ca16f2361c9ff1d",
+      "size": 82,
+      "url": "https://api.github.com/repos/haboumrad/bom-sample/contents/bom.yml?ref=0.0.2",
+      "html_url": "https://github.com/haboumrad/bom-sample/blob/0.0.2/bom.yml",
+      "git_url": "https://api.github.com/repos/haboumrad/bom-sample/git/blobs/b18c11c6c6fd16fd9278a80d3ca16f2361c9ff1d",
+      "download_url": "https://raw.githubusercontent.com/haboumrad/bom-sample/0.0.2/bom.yml?token=ABXB6Q4KQ4NWHUYW7NODW7TEMFDKY",
+      "type": "file",
+      "content": "c3lzdGVtczoKICAtIG5hbWU6IHNhbXBsZS1zeXMtMQogICAgdmVyc2lvbjog\nMC4wLjMKICAgIHVybDogaGFib3VtcmFkL3NhbXBsZS1zeXMtMQ==\n",
+      "encoding": "base64",
+      "_links": {
+        "self": "https://api.github.com/repos/haboumrad/bom-sample/contents/bom.yml?ref=0.0.2",
+        "git": "https://api.github.com/repos/haboumrad/bom-sample/git/blobs/b18c11c6c6fd16fd9278a80d3ca16f2361c9ff1d",
+        "html": "https://github.com/haboumrad/bom-sample/blob/0.0.2/bom.yml"
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "request": {
+    "url": "https://test.confluence.atlassian.net/wiki/api/v2/pages?serialize-ids-as-strings=true",
+    "headers": {
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic dGVzdEBjb25mbHVlbmNlLmNvbTpURVNUX0NPTkZMVUVOQ0VfVE9LRU4="
+      }
+    },
+    "body": {
+      "spaceId": "65636",
+      "status": "current",
+      "title": "Release note bom-sample 0.0.2 0.0.3",
+      "parentId": "131097",
+      "body": {
+        "representation": "storage",
+        "value": "<h1>Release note</h1><table><tbody><tr><th>Bom repository url</th><th>From</th><th>To</th><th>Bom repository diff url</th></tr><tr><td><a href=\"https://github.com/haboumrad/bom-sample\"><![CDATA[bom-sample]]></a></td><td><p>0.0.2</p></td><td><p>0.0.3</p></td><td><a href=\"https://github.com/haboumrad/bom-sample/compare/0.0.2...0.0.3\"><![CDATA[compare url]]></a></td></tr></tbody></table><h1>Legend</h1><p><span style=\"color:black;font-weight:bold\">Black</span>: System not changed in this bom version</p><p><span style=\"color:blue;font-weight:bold\">Blue</span>: System has changed in this bom version</p><p><span style=\"color:green;font-weight:bold\">Green</span>: System has been added in this bom version</p><h1>Changelog</h1><table><tbody><tr><th>System</th><th>Status</th><th>From</th><th>To</th><th>Release note</th></tr><tr><td><p><span style=\"color:blue;font-weight:bold\">sample-sys-1</span></p></td><td><p><span style=\"color:blue;font-weight:bold\">UPDATED</span></p></td><td><p><span style=\"color:blue;font-weight:bold\">0.0.3</span></p></td><td><p><span style=\"color:blue;font-weight:bold\">0.0.4</span></p></td><td><ac:link><ri:page ri:content-title=\"Release note sample-sys-1 0.0.3 0.0.4\"/><ac:plain-text-link-body><![CDATA[Release note sample-sys-1 0.0.3 0.0.4]]></ac:plain-text-link-body></ac:link></td></tr></tbody></table>"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "id": "2031641",
+      "version": {
+        "number": 1,
+        "message": "",
+        "minorEdit": false,
+        "authorId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+        "createdAt": "2023-05-18T20:48:50.240Z"
+      },
+      "authorId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+      "title": "Release note bom-sample 0.0.2 0.0.3",
+      "status": "current",
+      "body": {
+        "storage": {
+          "value": "<h1>Release note</h1><table><tbody><tr><th>Bom repository url</th><th>From</th><th>To</th><th>Bom repository diff url</th></tr><tr><td><a href=\"https://github.com/haboumrad/bom-sample\">bom-sample</a></td><td><p>0.0.2</p></td><td><p>0.0.3</p></td><td><a href=\"https://github.com/haboumrad/bom-sample/compare/0.0.2...0.0.3\">compare url</a></td></tr></tbody></table><h1>Legend</h1><p><span style=\"color: black;font-weight: bold;\">Black</span>: System not changed in this bom version</p><p><span style=\"color: blue;font-weight: bold;\">Blue</span>: System has changed in this bom version</p><p><span style=\"color: green;font-weight: bold;\">Green</span>: System has been added in this bom version</p><h1>Changelog</h1><table><tbody><tr><th>System</th><th>Status</th><th>From</th><th>To</th><th>Release note</th></tr><tr><td><p><span style=\"color: blue;font-weight: bold;\">sample-sys-1</span></p></td><td><p><span style=\"color: blue;font-weight: bold;\">UPDATED</span></p></td><td><p><span style=\"color: blue;font-weight: bold;\">0.0.3</span></p></td><td><p><span style=\"color: blue;font-weight: bold;\">0.0.4</span></p></td><td><ac:link><ri:page ri:content-title=\"Release note sample-sys-1 0.0.3 0.0.4\" ri:version-at-save=\"1\" /><ac:plain-text-link-body><![CDATA[Release note sample-sys-1 0.0.3 0.0.4]]></ac:plain-text-link-body></ac:link></td></tr></tbody></table>",
+          "representation": "storage"
+        }
+      },
+      "parentId": "131097",
+      "spaceId": "65636",
+      "createdAt": "2023-05-18T20:48:50.240Z"
+    }
+  }
+}

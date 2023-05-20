@@ -1,0 +1,53 @@
+{
+  "request": {
+    "url": "https://test.confluence.atlassian.net/wiki/rest/api/content/search?cql=space=SD+and+title=\"sample-sys-1\"+and+type=page+and+parent=33231&limit=1",
+    "headers": {
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic dGVzdEBjb25mbHVlbmNlLmNvbTpURVNUX0NPTkZMVUVOQ0VfVE9LRU4="
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "results": [
+        {
+          "id": "1540097",
+          "type": "page",
+          "status": "current",
+          "title": "sample-sys-1",
+          "childTypes": {},
+          "macroRenderedOutput": {},
+          "restrictions": {},
+          "_expandable": {
+            "container": "",
+            "metadata": "",
+            "extensions": "",
+            "operations": "",
+            "children": "",
+            "history": "/rest/api/content/1540097/history",
+            "ancestors": "",
+            "body": "",
+            "version": "",
+            "descendants": "",
+            "space": "/rest/api/space/SD"
+          },
+          "_links": {
+            "webui": "/spaces/SD/pages/1540097/sample-sys-1",
+            "self": "https://test.confluence.atlassian.net/wiki/rest/api/content/1540097",
+            "tinyui": "/x/AYAX"
+          }
+        }
+      ],
+      "start": 0,
+      "limit": 1,
+      "size": 1,
+      "_links": {
+        "base": "https://test.confluence.atlassian.net/wiki",
+        "context": "/wiki",
+        "self": "https://test.confluence.atlassian.net/wiki/rest/api/content/search?cql=space=SD+and+title=%22sample-sys-1%22+and+type=page+and+parent=33231"
+      }
+    }
+  }
+}

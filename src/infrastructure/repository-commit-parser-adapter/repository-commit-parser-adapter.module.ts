@@ -9,7 +9,7 @@ import { validateGithubCommitExtractorEnvVars } from './configuration/github-com
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        '.env.local.github-repository-commit-parser-adapter',
+        `envs/${process.env.NODE_ENV}/.env.github-repository-commit-parser-adapter`,
         '.env.github-repository-commit-parser-adapter',
       ],
       isGlobal: false,

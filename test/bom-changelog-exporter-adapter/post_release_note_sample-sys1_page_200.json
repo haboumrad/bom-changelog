@@ -1,0 +1,46 @@
+{
+  "request": {
+    "url": "https://test.confluence.atlassian.net/wiki/api/v2/pages?serialize-ids-as-strings=true",
+    "headers": {
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": "Basic dGVzdEBjb25mbHVlbmNlLmNvbTpURVNUX0NPTkZMVUVOQ0VfVE9LRU4="
+      }
+    },
+    "body": {
+      "spaceId": "65636",
+      "status": "current",
+      "title": "Release note sample-sys-1 0.0.3 0.0.4",
+      "parentId": "1540097",
+      "body": {
+        "representation": "storage",
+        "value": "<h1>Release note</h1><table><tbody><tr><th>System repository url</th><th>From</th><th>To</th><th>System repository diff url</th></tr><tr><td><a href=\"https://github.com/haboumrad/sample-sys-1\"><![CDATA[sample-sys-1]]></a></td><td><p>0.0.3</p></td><td><p>0.0.4</p></td><td><a href=\"https://github.com/haboumrad/sample-sys-1/compare/0.0.3...0.0.4\"><![CDATA[compare url]]></a></td></tr></tbody></table><h1>Changelog</h1><table><tbody><tr><th>Key</th><th>Type</th><th>Summary</th><th>Committer</th></tr><tr><td><a href=\"https://test.jira.atlassian.net/browse/PROJ-1\"><![CDATA[PROJ-1]]></a></td><td><p>Bug</p></td><td><p>fix log format</p></td><td><p>haboumrad</p></td></tr><tr><td><p>PROJ-DOES-NOT-EXIST-1</p></td><td><p>feat</p></td><td><p>commit 6</p></td><td><p>haboumrad</p></td></tr></tbody></table>"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "id": "2031617",
+      "version": {
+        "number": 1,
+        "message": "",
+        "minorEdit": false,
+        "authorId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+        "createdAt": "2023-05-18T20:44:41.083Z"
+      },
+      "authorId": "557058:2f2113ed-1e50-42d6-aea9-cb4b954c955b",
+      "title": "Release note sample-sys-1 0.0.3 0.0.4",
+      "status": "current",
+      "body": {
+        "storage": {
+          "value": "<h1>Release note</h1><table><tbody><tr><th>System repository url</th><th>From</th><th>To</th><th>System repository diff url</th></tr><tr><td><a href=\"https://github.com/haboumrad/sample-sys-1\">sample-sys-1</a></td><td><p>0.0.3</p></td><td><p>0.0.4</p></td><td><a href=\"https://github.com/haboumrad/sample-sys-1/compare/0.0.3...0.0.4\">compare url</a></td></tr></tbody></table><h1>Changelog</h1><table><tbody><tr><th>Key</th><th>Type</th><th>Summary</th><th>Committer</th></tr><tr><td><a href=\"https://test.jira.atlassian.net/browse/PROJ-1\">PROJ-1</a></td><td><p>Bug</p></td><td><p>fix log format</p></td><td><p>haboumrad</p></td></tr><tr><td><p>PROJ-DOES-NOT-EXIST-1</p></td><td><p>feat</p></td><td><p>commit 6</p></td><td><p>haboumrad</p></td></tr></tbody></table>",
+          "representation": "storage"
+        }
+      },
+      "parentId": "1540097",
+      "spaceId": "65636",
+      "createdAt": "2023-05-18T20:44:41.083Z"
+    }
+  }
+}
