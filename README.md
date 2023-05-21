@@ -8,8 +8,7 @@
 
 # Description
 
-This project enable to generate changelog using gitHub, jira and confluence.
-This is the very first version of this project. It is still in progress.
+This tool generates a confluence changelog based on gitHub commits and jira.
 
 # TODO
 - complete documentation: README, architecture description and extensibility
