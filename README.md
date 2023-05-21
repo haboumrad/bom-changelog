@@ -1,4 +1,6 @@
 # Description
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog?ref=badge_shield)
+
 
 This project enable to generate changelog using gitHub, jira and confluence.
 This is the very first version of this project. It is still in progress.
@@ -20,3 +22,6 @@ This is the very first version of this project. It is still in progress.
 
 # License
 bom-changelog is [MIT licensed](LICENSE).
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog?ref=badge_large)
