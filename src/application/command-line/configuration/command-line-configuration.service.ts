@@ -12,9 +12,7 @@ export class CommandLineConfigurationService {
     return {
       changeManagement: {
         projectsPrefix: this.appConfigService
-          .get<string>('CHANGE_PROJECT_PREFIX_FILTER', {
-            infer: true,
-          })
+          .get<string>('CHANGE_PROJECT_PREFIX_FILTER')
           .split(','),
       },
     };
@@ -23,27 +21,17 @@ export class CommandLineConfigurationService {
   getChangeLogRequest(): BOMChangeLogRequest {
     return {
       bomRepository: {
-        label: this.appConfigService.get<string>('BOM_REPOSITORY_LABEL', {
-          infer: true,
-        }),
-        name: this.appConfigService.get<string>('BOM_REPOSITORY_NAME', {
-          infer: true,
-        }),
+        label: this.appConfigService.get<string>('BOM_REPOSITORY_LABEL'),
+        name: this.appConfigService.get<string>('BOM_REPOSITORY_NAME'),
       },
       from: {
         selector: this.appConfigService.get<string>(
           'BOM_REPOSITORY_FROM_VERSION',
-          {
-            infer: true,
-          },
         ),
       },
       to: {
         selector: this.appConfigService.get<string>(
           'BOM_REPOSITORY_TO_VERSION',
-          {
-            infer: true,
-          },
         ),
       },
     };

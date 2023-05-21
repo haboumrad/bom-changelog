@@ -9,9 +9,7 @@ export class GithubBomReaderConfigurationService {
 
   getConfig(): GithubBomReaderConfiguration {
     return {
-      githubToken: this.appConfigService.get<string>('GITHUB_TOKEN', {
-        infer: true,
-      }),
+      githubToken: this.appConfigService.get<string>('GITHUB_TOKEN'),
     };
   }
 }

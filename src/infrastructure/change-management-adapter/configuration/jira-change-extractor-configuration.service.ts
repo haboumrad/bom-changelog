@@ -9,16 +9,9 @@ export class JiraChangeExtractorConfigurationService {
 
   getConfig(): JiraChangeExtractorConfiguration {
     return {
-      jiraUrl: this.appConfigService.get<string>('JIRA_URL', {
-        infer: true,
-      }),
-      jiraUser: this.appConfigService.get<string>('JIRA_USER', {
-        infer: true,
-      }),
-
-      jiraToken: this.appConfigService.get<string>('JIRA_TOKEN', {
-        infer: true,
-      }),
+      jiraUrl: this.appConfigService.get<string>('JIRA_URL'),
+      jiraUser: this.appConfigService.get<string>('JIRA_USER'),
+      jiraToken: this.appConfigService.get<string>('JIRA_TOKEN'),
     };
   }
 }
