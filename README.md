@@ -3,7 +3,7 @@
 
 ![build and test](https://github.com/haboumrad/bom-changelog/actions/workflows/node.js.yml/badge.svg)
 [![codecov](https://codecov.io/gh/haboumrad/bom-changelog/branch/main/graph/badge.svg?token=XB6USKQJPY)](https://codecov.io/gh/haboumrad/bom-changelog)
-![semgrep](https://github.com/haboumrad/bom-changelog/actions/workflows/semgrep.yml/badge.svg)
+![semgrep](https://github.com/haboumrad/bom-changelog/actions/workflows/semgrep.yml/badge.svg)(https://semgrep.dev/orgs/-/findings?repo=haboumrad/bom-changelog)
 [![Known Vulnerabilities](https://snyk.io/test/github/haboumrad/bom-changelog/badge.svg)](https://snyk.io/test/github/haboumrad/bom-changelog)
 
 # Description
