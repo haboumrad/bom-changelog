@@ -1,6 +1,10 @@
-# Description
+![build and test](https://github.com/haboumrad/bom-changelog/actions/workflows/node.js.yml/badge.svg)
+![semgrep](https://github.com/haboumrad/bom-changelog/actions/workflows/semgrep.yml/badge.svg)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog?ref=badge_shield)
+[![Known Vulnerabilities](https://snyk.io/test/github/haboumrad/bom-changelog/badge.svg)](https://snyk.io/test/github/haboumrad/bom-changelog)
 
+
+# Description
 
 This project enable to generate changelog using gitHub, jira and confluence.
 This is the very first version of this project. It is still in progress.
@@ -18,7 +22,6 @@ This is the very first version of this project. It is still in progress.
   - generation of changelog with commit having unknown jira issue
   - do not call jira when the change does not match the configured projects
   - do not generate system pages when system is unchanged
-- add CI pipeline
 
 # License
 bom-changelog is [MIT licensed](LICENSE).
