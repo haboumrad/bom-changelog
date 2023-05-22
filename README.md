@@ -10,6 +10,11 @@
 
 This tool generates a confluence changelog based on gitHub commits and jira.
 
+# Running the application
+```
+ npm run start:dev -- --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
+```
+
 # TODO
 - complete documentation: README, architecture description and extensibility
 - error handling

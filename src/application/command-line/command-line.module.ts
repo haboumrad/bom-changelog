@@ -18,6 +18,7 @@ import { validateCommandLineEnvVars } from './configuration/command-line-env-var
     AppEntrypointModule,
   ],
   providers: [CommandLineConfigurationService, CommandLineService],
+
   exports: [CommandLineService],
 })
 export class CommandLineModule {}

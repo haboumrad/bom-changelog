@@ -1,7 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { TestingModule } from '@nestjs/testing';
 import { CommandLineModule } from '../src/application/command-line/command-line.module';
-import { CommandLineService } from '../src/application/command-line/command-line.service';
 import axios from 'axios';
 
 import mockGitBomReadFileFrom200 from './bom-diff-adapter/readFileFrom_200.json';
@@ -14,22 +12,17 @@ import mockConfluenceGetReleaseNoteSystemPageNotFound200 from './bom-changelog-e
 import mockConfluencePostReleaseNoteSystemPage200 from './bom-changelog-exporter-adapter/post_release_note_sample-sys1_page_200.json';
 import mockConfluenceGetReleaseNoteBomPageNotFound200 from './bom-changelog-exporter-adapter/get_release_note_bom_page_not_found_200.json';
 import mockConfluencePostReleaseNoteBomPage200 from './bom-changelog-exporter-adapter/post_release_note_bom_page_200.json';
+import { CommandTestFactory } from 'nest-commander-testing';
 
 describe('Github, Jira and Confluence adapters (e2e)', () => {
-  let app: INestApplication;
-  let commandLineService: CommandLineService;
+  let commandInstance: TestingModule;
   const spyAxiosGet = jest.spyOn(axios, 'get');
   const spyAxiosPost = jest.spyOn(axios, 'post');
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
+    commandInstance = await CommandTestFactory.createTestingCommand({
       imports: [CommandLineModule],
     }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
-
-    commandLineService = await moduleFixture.resolve(CommandLineService);
   });
 
   it('command line service nominal case, one system updated', async () => {
@@ -57,7 +50,16 @@ describe('Github, Jira and Confluence adapters (e2e)', () => {
     );
 
     //WHEN
-    await commandLineService.run();
+    await CommandTestFactory.run(commandInstance, [
+      '--repo-label',
+      'bom-sample',
+      '--repo-name',
+      'haboumrad/bom-sample',
+      '--from',
+      '0.0.2',
+      '--to',
+      '0.0.3',
+    ]);
 
     //THEN
     expect(spyAxiosGet).toHaveBeenCalledTimes(8);

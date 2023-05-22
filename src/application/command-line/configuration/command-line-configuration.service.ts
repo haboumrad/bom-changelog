@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { BOMChangeLogRequest } from '../../../domain/bom-changelog-generator/model/bom-changelog';
 
 @Injectable()
 export class CommandLineConfigurationService {
@@ -14,25 +13,6 @@ export class CommandLineConfigurationService {
         projectsPrefix: this.appConfigService
           .get<string>('CHANGE_PROJECT_PREFIX_FILTER')
           .split(','),
-      },
-    };
-  }
-
-  getChangeLogRequest(): BOMChangeLogRequest {
-    return {
-      bomRepository: {
-        label: this.appConfigService.get<string>('BOM_REPOSITORY_LABEL'),
-        name: this.appConfigService.get<string>('BOM_REPOSITORY_NAME'),
-      },
-      from: {
-        selector: this.appConfigService.get<string>(
-          'BOM_REPOSITORY_FROM_VERSION',
-        ),
-      },
-      to: {
-        selector: this.appConfigService.get<string>(
-          'BOM_REPOSITORY_TO_VERSION',
-        ),
       },
     };
   }

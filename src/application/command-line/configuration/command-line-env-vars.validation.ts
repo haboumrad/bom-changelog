@@ -4,22 +4,6 @@ import { IsNotEmpty, IsString, validateSync } from 'class-validator';
 class CommandLineEnvironmentVariables {
   @IsString()
   @IsNotEmpty()
-  BOM_REPOSITORY_LABEL!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  BOM_REPOSITORY_NAME!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  BOM_REPOSITORY_FROM_VERSION!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  BOM_REPOSITORY_TO_VERSION!: string;
-
-  @IsString()
-  @IsNotEmpty()
   CHANGE_PROJECT_PREFIX_FILTER!: string;
 }
 
