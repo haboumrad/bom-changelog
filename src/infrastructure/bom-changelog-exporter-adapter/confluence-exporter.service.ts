@@ -143,7 +143,7 @@ export class ConfluenceExporter implements BomExporter {
     parentPageId: string,
     pageName: string,
     pageContent: string,
-  ): Promise<SystemPageId | void> {
+  ): Promise<SystemPageId | undefined> {
     const createPageUrl = `${this.configuration.confluenceUrl}/wiki/api/v2/pages?serialize-ids-as-strings=true`;
     return axios
       .post(
