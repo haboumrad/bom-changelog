@@ -61,7 +61,7 @@ export class BomDiffService {
         label: systemTo.repository.label,
       },
       versions: {
-        from: systemFrom?.version,
+        from: systemFrom?.version ?? { selector: '-' },
         to: systemTo.version,
       },
       status,
@@ -72,7 +72,7 @@ export class BomDiffService {
     systemFrom: RepositoryVersion,
     systemTo: RepositoryVersion,
   ) {
-    if (systemFrom.version.selector === systemTo.version.selector) {
+    if (systemFrom?.version.selector === systemTo.version.selector) {
       return RepoStatus.UNCHANGED;
     }
     return Boolean(systemFrom) ? RepoStatus.UPDATED : RepoStatus.CREATED;

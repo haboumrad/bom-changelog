@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ChangeWithCommit } from '../../domain/change-management/model/Changelog';
-import { Buffer } from 'buffer';
 import {
   BomExporter,
   BomPageId,
@@ -144,7 +143,7 @@ export class ConfluenceExporter implements BomExporter {
     parentPageId: string,
     pageName: string,
     pageContent: string,
-  ): Promise<SystemPageId> {
+  ): Promise<SystemPageId | void> {
     const createPageUrl = `${this.configuration.confluenceUrl}/wiki/api/v2/pages?serialize-ids-as-strings=true`;
     return axios
       .post(
@@ -168,13 +167,14 @@ export class ConfluenceExporter implements BomExporter {
       )
       .then((response) => {
         if (response.status == 200) {
-          return response.data.id;
+          return response.data.id.toString() as string;
         }
         console.warn(`Error while creating page ${pageName}: ${response}`);
         return undefined;
       })
       .catch((reason) => {
         console.error(`Error while creating page: ${reason}`);
+        return undefined;
       });
   }
 
@@ -198,7 +198,7 @@ export class ConfluenceExporter implements BomExporter {
     contentBuilder.appendTableLineColumnEnd();
     contentBuilder.appendTableLineColumnStart();
     contentBuilder.appendParagraph(
-      repositoryChangeLog.repository.versions.from.selector,
+      repositoryChangeLog.repository.versions.from?.selector,
     );
     contentBuilder.appendTableLineColumnEnd();
     contentBuilder.appendTableLineColumnStart();

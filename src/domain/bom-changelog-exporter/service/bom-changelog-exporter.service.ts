@@ -31,7 +31,7 @@ export class BomChangelogExporterService {
       );
       const systemReleaseNotePageName = this.generateReleaseNotePageName(
         repositoryChangeLog.repository.systemRepository.label,
-        repositoryChangeLog.repository.versions.from.selector,
+        repositoryChangeLog.repository.versions.from?.selector,
         repositoryChangeLog.repository.versions.to.selector,
       );
       const systemReleaseNotePageId =

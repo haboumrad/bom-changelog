@@ -8,6 +8,7 @@ import {
   RepositoryChangeLog,
 } from '../model/bom-changelog';
 import { ChangeLogOptions } from '../../../application/command-line/configuration/command-line-configuration.service';
+import { RepoStatus } from '../../bom-diff/model/bom';
 
 @Injectable()
 export class BomChangelogGeneratorService {
@@ -27,13 +28,17 @@ export class BomChangelogGeneratorService {
       bomChangeLogRequest,
     );
     for (const repoDiffStatus of bomDiffResponse.systems) {
-      const parsedCommits = await this.repositoryCommitParser.getParsedCommits(
-        repoDiffStatus,
-      );
-      const repoChangeLog = await this.changeLogService.getChangeLog(
-        parsedCommits,
-        changeLogOptions.changeManagement,
-      );
+      const parsedCommits =
+        repoDiffStatus.status === RepoStatus.CREATED
+          ? []
+          : await this.repositoryCommitParser.getParsedCommits(repoDiffStatus);
+      const repoChangeLog =
+        repoDiffStatus.status === RepoStatus.CREATED
+          ? { validChangeLog: [], filteredChangeLog: [], invalidChangeLog: [] }
+          : await this.changeLogService.getChangeLog(
+              parsedCommits,
+              changeLogOptions.changeManagement,
+            );
       result.push({
         repository: {
           status: repoDiffStatus.status,
@@ -48,7 +53,7 @@ export class BomChangelogGeneratorService {
         },
         repositoryDiffUrl: this.repositoryCommitParser.getRepositoryDiffUrl(
           repoDiffStatus.systemRepository.name,
-          repoDiffStatus.versions.from.selector,
+          repoDiffStatus.versions.from?.selector,
           repoDiffStatus.versions.to.selector,
         ),
         ...repoChangeLog,
