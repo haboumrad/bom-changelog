@@ -9,8 +9,8 @@ import { GithubBomReaderConfigurationService } from './configuration/github-bom-
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        `envs/${process.env.NODE_ENV}/.env.github-bom-diff-adapter`,
-        '.env.github-bom-diff-adapter',
+        `${process.env.HOME}/.changelog/${process.env.BOM_CONTEXT}/.env.github-bom-diff-adapter`,
+        `envs/test/.env.github-bom-diff-adapter`,
       ],
       isGlobal: false,
       validate: validateGithubBomReaderEnvVars,

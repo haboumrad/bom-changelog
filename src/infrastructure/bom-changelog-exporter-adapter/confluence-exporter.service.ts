@@ -10,7 +10,6 @@ import { RepositoryChangeLog } from 'src/domain/bom-changelog-generator/model/bo
 import { Repository, RepoStatus, Version } from 'src/domain/bom-diff/model/bom';
 import { ConfluenceContentBuilder } from './confluence-content-builder';
 import axios from 'axios';
-import { ConfluenceUtils } from './confluence-utils';
 import {
   ConfluenceExporterConfiguration,
   ConfluenceExporterConfigurationService,
@@ -374,17 +373,16 @@ export class ConfluenceExporter implements BomExporter {
 
     contentBuilder.appendHeading('Legend');
     contentBuilder.appendParagraph(
-      `${ConfluenceUtils.black(
-        'Black',
-      )}: System not changed in this bom version`,
+      'Black: System not changed in this bom version',
+      RepoStatus.UNCHANGED,
     );
     contentBuilder.appendParagraph(
-      `${ConfluenceUtils.blue('Blue')}: System has changed in this bom version`,
+      'Blue: System has changed in this bom version',
+      RepoStatus.UPDATED,
     );
     contentBuilder.appendParagraph(
-      `${ConfluenceUtils.green(
-        'Green',
-      )}: System has been added in this bom version`,
+      'Green: System has been added in this bom version',
+      RepoStatus.CREATED,
     );
     contentBuilder.appendHeading('Changelog');
     contentBuilder.appendTableStart([
@@ -400,39 +398,28 @@ export class ConfluenceExporter implements BomExporter {
       //system
       contentBuilder.appendTableLineColumnStart();
       contentBuilder.appendParagraph(
-        ConfluenceUtils.colorWithRepoStatus(
-          systemPage.repositoryChangeLog.repository.systemRepository.label,
-          repoStatus,
-        ),
+        systemPage.repositoryChangeLog.repository.systemRepository.label,
+        repoStatus,
       );
       contentBuilder.appendTableLineColumnEnd();
       //status
       contentBuilder.appendTableLineColumnStart();
-      contentBuilder.appendParagraph(
-        ConfluenceUtils.colorWithRepoStatus(repoStatus.toString(), repoStatus),
-      );
+      contentBuilder.appendParagraph(repoStatus.toString(), repoStatus);
       contentBuilder.appendTableLineColumnEnd();
       //from
       contentBuilder.appendTableLineColumnStart();
       const from = systemPage.repositoryChangeLog.repository.versions.from;
-      contentBuilder.appendParagraph(
-        ConfluenceUtils.colorWithRepoStatus(
-          from ? from.selector : '-',
-          repoStatus,
-        ),
-      );
+      contentBuilder.appendParagraph(from ? from.selector : '-', repoStatus);
       contentBuilder.appendTableLineColumnEnd();
       //to
       contentBuilder.appendTableLineColumnStart();
       const to = systemPage.repositoryChangeLog.repository.versions.to;
-      contentBuilder.appendParagraph(
-        ConfluenceUtils.colorWithRepoStatus(to ? to.selector : '-', repoStatus),
-      );
+      contentBuilder.appendParagraph(to ? to.selector : '-', repoStatus);
       contentBuilder.appendTableLineColumnEnd();
       //release note link
       contentBuilder.appendTableLineColumnStart();
       if (repoStatus === RepoStatus.UNCHANGED) {
-        contentBuilder.appendParagraph('-');
+        contentBuilder.appendParagraph('-', repoStatus);
       } else {
         contentBuilder.appendConfluenceLink(
           systemPage.pageName,

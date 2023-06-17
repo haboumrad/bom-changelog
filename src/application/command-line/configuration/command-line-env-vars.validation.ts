@@ -4,6 +4,10 @@ import { IsNotEmpty, IsString, validateSync } from 'class-validator';
 class CommandLineEnvironmentVariables {
   @IsString()
   @IsNotEmpty()
+  BOM_CONTEXT!: string;
+
+  @IsString()
+  @IsNotEmpty()
   CHANGE_PROJECT_PREFIX_FILTER!: string;
 }
 

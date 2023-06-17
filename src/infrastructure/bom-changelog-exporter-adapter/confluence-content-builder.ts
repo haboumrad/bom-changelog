@@ -1,3 +1,6 @@
+import { RepoStatus } from '../../domain/bom-diff/model/bom';
+import { ConfluenceUtils } from './confluence-utils';
+
 export class ConfluenceContentBuilder {
   private content: string[] = [];
 
@@ -12,8 +15,16 @@ export class ConfluenceContentBuilder {
     return this;
   }
 
-  appendParagraph(paragraph: string): ConfluenceContentBuilder {
-    this.content.push(`<p>${CDATA(paragraph)}</p>`);
+  appendParagraph(
+    paragraph: string,
+    repostatus?: RepoStatus,
+  ): ConfluenceContentBuilder {
+    this.content.push(
+      ConfluenceUtils.colorWithRepoStatus(
+        `<p>${CDATA(paragraph)}</p>`,
+        repostatus,
+      ),
+    );
     return this;
   }
 

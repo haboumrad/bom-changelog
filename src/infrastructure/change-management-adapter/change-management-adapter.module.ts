@@ -9,8 +9,8 @@ import { validateJiraChangeExtractorEnvVars } from './configuration/jira-change-
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        `envs/${process.env.NODE_ENV}/.env.jira-change-management-adapter`,
-        '.env.jira-change-management-adapter',
+        `${process.env.HOME}/.changelog/${process.env.BOM_CONTEXT}/.env.jira-change-management-adapter`,
+        `envs/test/.env.jira-change-management-adapter`,
       ],
       isGlobal: false,
       validate: validateJiraChangeExtractorEnvVars,

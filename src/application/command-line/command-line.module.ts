@@ -9,8 +9,8 @@ import { validateCommandLineEnvVars } from './configuration/command-line-env-var
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        `envs/${process.env.NODE_ENV}/.env.command-line`,
-        '.env.command-line',
+        `${process.env.HOME}/.changelog/${process.env.BOM_CONTEXT}/.env.command-line`,
+        `envs/test/.env.command-line`,
       ],
       isGlobal: false,
       validate: validateCommandLineEnvVars,
