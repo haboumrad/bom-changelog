@@ -10,7 +10,7 @@ export class ConfluenceUtils {
 
   public static colorWithRepoStatus(
     content: string,
-    repoStatus: RepoStatus,
+    repoStatus?: RepoStatus,
   ): string {
     switch (repoStatus) {
       case RepoStatus.CREATED:
@@ -20,19 +20,19 @@ export class ConfluenceUtils {
       case RepoStatus.UNCHANGED:
         return ConfluenceUtils.black(content);
       default:
-        throw new Error(`Unsupported status ${repoStatus}`);
+        return ConfluenceUtils.black(content);
     }
   }
 
-  public static black(content: string): string {
+  private static black(content: string): string {
     return ConfluenceUtils.colorText(content, ConfluenceTextColor.BLACK);
   }
 
-  public static green(content: string): string {
+  private static green(content: string): string {
     return ConfluenceUtils.colorText(content, ConfluenceTextColor.GREEN);
   }
 
-  public static blue(content: string): string {
+  private static blue(content: string): string {
     return ConfluenceUtils.colorText(content, ConfluenceTextColor.BLUE);
   }
 }

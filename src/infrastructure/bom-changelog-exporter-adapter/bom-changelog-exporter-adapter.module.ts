@@ -9,8 +9,8 @@ import { ConfluenceExporterConfigurationService } from './configuration/confluen
   imports: [
     ConfigModule.forRoot({
       envFilePath: [
-        `envs/${process.env.NODE_ENV}/.env.confluence-bom-change-log-exporter-adapter`,
-        '.env.confluence-bom-change-log-exporter-adapter',
+        `${process.env.HOME}/.changelog/${process.env.BOM_CONTEXT}/.env.confluence-bom-change-log-exporter-adapter`,
+        `envs/test/.env.confluence-bom-change-log-exporter-adapter`,
       ],
       isGlobal: false,
       validate: validateConfluenceExporterEnvVars,
