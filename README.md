@@ -162,29 +162,14 @@ Example of use:
 ```
  export BOM_CONTEXT=local && npm run start:dev -- changelog --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
 ```
-Corresponding result:
+Corresponding result in confluence:
+
 ![hierarchy generated in confluence](/docs/bom-1-overview.png)
+
 ![bom release note generated in confluence (with active link to jira and github)](/docs/bom-1-bom-release-note.png)
+
 ![system release note generated in confluence (with active link to jira and github)](/docs/bom-1-system-release-note.png)
 
-
-# Improvements
-- error handling
-- add command line support for :
-  - selecting current bom-context
-  - creating bom-context 
-  - 
-Note: for now, the context management must be done manually
-  
-- add support for removing system from a BOM version
-- add tests
-  - bom generation with new, updated and unchanged systems
-  - Error code returned by http adapters
-  - multiple conventional commits with the same scope should lead to only one changelog line
-  - generation of changelog with commit having valid jira issue
-  - generation of changelog with commit having unknown jira issue
-  - do not call jira when the change does not match the configured projects
-  - do not generate system pages when system is unchanged
 
 # License
 bom-changelog is [MIT licensed](LICENSE).
