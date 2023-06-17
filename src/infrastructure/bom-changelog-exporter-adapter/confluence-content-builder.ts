@@ -13,7 +13,7 @@ export class ConfluenceContentBuilder {
   }
 
   appendParagraph(paragraph: string): ConfluenceContentBuilder {
-    this.content.push(`<p>${paragraph}</p>`);
+    this.content.push(`<p>${CDATA(paragraph)}</p>`);
     return this;
   }
 
@@ -56,12 +56,7 @@ export class ConfluenceContentBuilder {
     linkName: string,
     linkUrl: string,
   ): ConfluenceContentBuilder {
-    this.content.push(`<a href="${linkUrl}"><![CDATA[${linkName}]]></a>`);
-    return this;
-  }
-
-  appendCDATA(content: string): ConfluenceContentBuilder {
-    this.content.push(`<![CDATA[${content}]]>`);
+    this.content.push(`<a href="${linkUrl}">${CDATA(linkName)}</a>`);
     return this;
   }
 
@@ -70,8 +65,12 @@ export class ConfluenceContentBuilder {
     confluencePageName: string,
   ): ConfluenceContentBuilder {
     this.content.push(
-      `<ac:link><ri:page ri:content-title="${confluencePageName}"/><ac:plain-text-link-body><![CDATA[${linkName}]]></ac:plain-text-link-body></ac:link>`,
+      `<ac:link><ri:page ri:content-title="${confluencePageName}"/><ac:plain-text-link-body>${CDATA(
+        linkName,
+      )}></ac:plain-text-link-body></ac:link>`,
     );
     return this;
   }
 }
+
+const CDATA = (content: string) => `<![CDATA[${content}]]>`;

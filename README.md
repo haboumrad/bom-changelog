@@ -10,15 +10,21 @@
 
 This tool generates a confluence changelog based on gitHub commits and jira.
 
-# Running the application
+# Getting started
+## Create a bom context
+## Run the application
 ```
- npm run start:dev -- --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
+ npm run start:dev -- changelog --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
 ```
 
 # TODO
 - complete documentation: README, architecture description and extensibility
 - error handling
-- add command line support (for now arguments are fetched from env vars)
+- add command line support for :
+  - selecting current bom-context
+  
+  Note: for now, the context management must be done manually
+  
 - add support for removing system from a BOM version
 - add tests
   - bom generation with new, updated and unchanged systems

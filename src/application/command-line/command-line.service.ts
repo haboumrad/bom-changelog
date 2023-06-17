@@ -14,7 +14,7 @@ interface CommandLineOptions {
 @Command({
   name: 'changelog',
   description: 'Generate changelog',
-  options: { isDefault: true },
+  options: { isDefault: false },
 })
 export class CommandLineService extends CommandRunner {
   constructor(
