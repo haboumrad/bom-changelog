@@ -1,14 +1,12 @@
-[![Npm package version](https://badgen.net/npm/v/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
-[![Npm package version](https://badgen.net/npm/node/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
-
-
 ![GitHub](https://img.shields.io/github/license/haboumrad/bom-changelog)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog?ref=badge_shield)
 
+[![Npm package version](https://img.shields.io/npm/v/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
 ![build and test](https://github.com/haboumrad/bom-changelog/actions/workflows/node.js.yml/badge.svg)
 [![codecov](https://codecov.io/gh/haboumrad/bom-changelog/branch/main/graph/badge.svg?token=XB6USKQJPY)](https://codecov.io/gh/haboumrad/bom-changelog)
 [![semgrep](https://github.com/haboumrad/bom-changelog/actions/workflows/semgrep.yml/badge.svg)](https://semgrep.dev/orgs/-/findings?repo=haboumrad/bom-changelog)
 [![Known Vulnerabilities](https://snyk.io/test/github/haboumrad/bom-changelog/badge.svg)](https://snyk.io/test/github/haboumrad/bom-changelog)
+[![Npm package version](https://img.shields.io/node/v/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
 
 # Description
 
