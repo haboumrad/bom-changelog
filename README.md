@@ -164,11 +164,9 @@ The label is used for the bom page name generated in confluence
 ```
 
 ### Running the command line using the cli
-install the changelog-cli command line globally using the following command(the changelog-cli is not yet available in a global npm registry)
+install the changelog-cli command line globally using the following command
 ```
-npm run build
-chmod u+x dist/main.js
-npm install -g .
+npm i @haboumrad/bom-changelog
 ```
 Run the command line
 ```
@@ -177,11 +175,11 @@ export BOM_CONTEXT=local && changelog-cli generate --repo-label bom-sample --rep
 
 ### Corresponding result in confluence:
 
-![hierarchy generated in confluence](/docs/bom-1-overview.png)
+![hierarchy generated in confluence](https://github.com/haboumrad/bom-changelog/blob/main/docs/bom-1-overview.png)
 
-![bom release note generated in confluence (with active link to jira and github)](/docs/bom-1-bom-release-note.png)
+![bom release note generated in confluence (with active link to jira and github)](https://github.com/haboumrad/bom-changelog/blob/main/docs/bom-1-bom-release-note.png)
 
-![system release note generated in confluence (with active link to jira and github)](/docs/bom-1-system-release-note.png)
+![system release note generated in confluence (with active link to jira and github)](https://github.com/haboumrad/bom-changelog/blob/main/docs/bom-1-system-release-note.png)
 
 
 # License
