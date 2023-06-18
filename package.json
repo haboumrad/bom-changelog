@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "author": "",
-  "private": true,
+  "private": false,
   "license": "MIT",
   "bin": {
     "changelog-cli": "./dist/main.js"
