@@ -22,6 +22,10 @@
     "test:cov": "export BOM_CONTEXT=test && jest --coverage",
     "test:debug": "export BOM_CONTEXT=test && node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
+  "engines" : {
+    "npm" : ">=9.5.0",
+    "node" : ">=18.15.0"
+  },
   "dependencies": {
     "@nestjs/common": "^9.4.1",
     "@nestjs/config": "^2.3.2",
