@@ -164,9 +164,9 @@ The label is used for the bom page name generated in confluence
 ```
 
 ### Running the command line using the cli
-install the changelog-cli command line globally using the following command
+install the changelog-cli command line using the following command
 ```
-npm i @haboumrad/bom-changelog
+npm i -g @haboumrad/bom-changelog
 ```
 Run the command line
 ```
