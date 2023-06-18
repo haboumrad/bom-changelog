@@ -158,11 +158,24 @@ The command line take simply the bom repository information required to generate
 
 The label is used for the bom page name generated in confluence 
 
-Example of use:
+### Running the command line in dev mode
 ```
- export BOM_CONTEXT=local && npm run start:dev -- changelog --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
+ export BOM_CONTEXT=local && npm run start:dev -- generate --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
 ```
-Corresponding result in confluence:
+
+### Running the command line using the cli
+install the changelog-cli command line globally using the following command(the changelog-cli is not yet available in a global npm registry)
+```
+npm run build
+chmod u+x dist/main.js
+npm install -g .
+```
+Run the command line
+```
+export BOM_CONTEXT=local && changelog-cli generate --repo-label bom-sample --repo-name haboumrad/bom-sample --from 0.0.2 --to 0.0.3
+```
+
+### Corresponding result in confluence:
 
 ![hierarchy generated in confluence](/docs/bom-1-overview.png)
 

@@ -12,7 +12,7 @@ interface CommandLineOptions {
 }
 
 @Command({
-  name: 'changelog',
+  name: 'generate',
   description: 'Generate changelog',
   options: { isDefault: false },
 })

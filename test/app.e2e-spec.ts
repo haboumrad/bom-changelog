@@ -51,7 +51,7 @@ describe('Github, Jira and Confluence adapters (e2e)', () => {
 
     //WHEN
     await CommandTestFactory.run(commandInstance, [
-      'changelog',
+      'generate',
       '--repo-label',
       'bom-sample',
       '--repo-name',
