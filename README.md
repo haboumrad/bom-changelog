@@ -1,3 +1,7 @@
+[![Npm package version](https://badgen.net/npm/v/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
+[![Npm package version](https://badgen.net/npm/node/@haboumrad/bom-changelog)](https://www.npmjs.com/package/@haboumrad/bom-changelog)
+
+
 ![GitHub](https://img.shields.io/github/license/haboumrad/bom-changelog)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fhaboumrad%2Fbom-changelog?ref=badge_shield)
 
@@ -9,22 +13,22 @@
 # Description
 
 This tool is a release notes generator:
-- based on conventional commit parsing of github repositories
-- fetching corresponding jira tickets information
-- exporting the results in confluence
+- It is based on conventional commit parsing of github repositories
+- It optionally fetches corresponding content using jira issues information
+- It exports the result in confluence
 
 ## How does it work ?
 A release notes contains all the changes between 2 tags of a given git repository.
 - Each parsed commit between the 2 tags is considered as a change.
-- Commits complying to this pattern will be picked (it respects the git conventional commit convention): <TYPE>(<SCOPE>):<SUBJECT>
+- Commits complying to this pattern will be picked (it respects the git conventional commit convention): \<TYPE\>(\<SCOPE\>):\<SUBJECT\>
 - Commits which do not comply to this convention will be reported as is in the changelog without further processing.
 
 For conventional commits:
-- The <TYPE> is considered as the type of the change
-- The <SCOPE> is considered as the id of the change
-- The <SUBJECT> is considered as the summary of the change
+- The \<TYPE\> is considered as the type of the change
+- The \<SCOPE\> is considered as the id of the change
+- The \<SUBJECT\> is considered as the summary of the change
 
-For each conventional commit, if the <SCOPE> identifies an existing Jira issue, then the tool will use Jira to identify the change:
+For each parsed conventional commit, if the SCOPE identifies an existing Jira issue, then the tool will use Jira to identify the change:
 - The Jira issue type is considered as the type of the change
 - The Jira issue key is considered as the id of the change (Note that it correspond exactly to the <SCOPE> of the commit)
 - The Jira issue summary is considered as the summary of the change
