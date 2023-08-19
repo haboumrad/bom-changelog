@@ -20,4 +20,5 @@ export type Change = {
   summary: string;
   type: string;
   status: string;
+  deploymentImpact?: string;
 };

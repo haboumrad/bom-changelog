@@ -1,5 +1,10 @@
 import { plainToClass } from 'class-transformer';
-import { IsNotEmpty, IsString, validateSync } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  validateSync,
+} from 'class-validator';
 
 class JiraChangeExtractorEnvironmentVariables {
   @IsString()
@@ -13,6 +18,10 @@ class JiraChangeExtractorEnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   JIRA_TOKEN!: string;
+
+  @IsString()
+  @IsOptional()
+  JIRA_DEPLOYMENT_IMPACT_FIELD!: string;
 }
 
 export const validateJiraChangeExtractorEnvVars = (
