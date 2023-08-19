@@ -283,11 +283,54 @@ export class ConfluenceExporter implements BomExporter {
     contentBuilder.appendTableEnd();
   }
 
+  private generateDeploymentImpactTable(
+    sectionName: string,
+    contentBuilder: ConfluenceContentBuilder,
+    systemPages: SystemPageWithChangeLog[],
+  ): void {
+    contentBuilder.appendHeading(sectionName);
+    contentBuilder.appendTableStart(['System', 'Key', 'Summary', 'Impact']);
+    systemPages.forEach((system) => {
+      system.repositoryChangeLog.validChangeLog.forEach((changeWithCommit) => {
+        const changeDeploymentImpact =
+          this.getChangeDeploymentImpact(changeWithCommit);
+        if (changeDeploymentImpact) {
+          contentBuilder.appendTableLineStart();
+          contentBuilder.appendTableLineColumnStart();
+          const repoStatus = system.repositoryChangeLog.repository.status;
+          contentBuilder.appendParagraph(
+            system.repositoryChangeLog.repository.systemRepository.label,
+            repoStatus,
+          );
+          contentBuilder.appendTableLineColumnEnd();
+          contentBuilder.appendTableLineColumnStart();
+          const [id, url] = this.getChangeId(changeWithCommit);
+          if (changeWithCommit.change) {
+            contentBuilder.appendLinkExternalUrl(id, url);
+          } else {
+            contentBuilder.appendParagraph(id);
+          }
+          contentBuilder.appendTableLineColumnEnd();
+          contentBuilder.appendTableLineColumnStart();
+          contentBuilder.appendParagraph(
+            this.getChangeSummary(changeWithCommit),
+          );
+          contentBuilder.appendTableLineColumnEnd();
+          contentBuilder.appendTableLineColumnStart();
+          contentBuilder.appendParagraph(changeDeploymentImpact);
+          contentBuilder.appendTableLineColumnEnd();
+          contentBuilder.appendTableLineEnd();
+        }
+      });
+    });
+    contentBuilder.appendTableEnd();
+  }
+
   private generateChangeLogTable(
     sectionName: string,
     contentBuilder: ConfluenceContentBuilder,
     validChangeLog: ChangeWithCommit[],
-  ) {
+  ): void {
     contentBuilder.appendHeading(sectionName);
     contentBuilder.appendTableStart(['Key', 'Type', 'Summary', 'Committer']);
     validChangeLog.forEach((changeWithCommit) => {
@@ -337,6 +380,15 @@ export class ConfluenceExporter implements BomExporter {
     return changeWithCommit.conventionalCommit.subject;
   }
 
+  private getChangeDeploymentImpact(
+    changeWithCommit: ChangeWithCommit,
+  ): string {
+    if (changeWithCommit.change) {
+      return changeWithCommit.change.deploymentImpact;
+    }
+    return undefined;
+  }
+
   private generateBomContent(
     bomRepository: Repository,
     from: Version,
@@ -384,6 +436,13 @@ export class ConfluenceExporter implements BomExporter {
       'Green: System has been added in this bom version',
       RepoStatus.CREATED,
     );
+
+    this.generateDeploymentImpactTable(
+      'Deployment impacts',
+      contentBuilder,
+      systemPages,
+    );
+
     contentBuilder.appendHeading('Changelog');
     contentBuilder.appendTableStart([
       'System',
@@ -397,6 +456,7 @@ export class ConfluenceExporter implements BomExporter {
       contentBuilder.appendTableLineStart();
       //system
       contentBuilder.appendTableLineColumnStart();
+
       contentBuilder.appendParagraph(
         systemPage.repositoryChangeLog.repository.systemRepository.label,
         repoStatus,

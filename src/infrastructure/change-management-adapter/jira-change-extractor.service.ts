@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ChangeExtractor } from '../../domain/change-management/port/change-extractor';
 import { Change } from '../../domain/change-management/model/Changelog';
-import { Buffer } from 'buffer';
 import axios from 'axios';
 import {
   JiraChangeExtractorConfiguration,
@@ -44,6 +43,9 @@ export class JiraChangeExtractor implements ChangeExtractor {
       summary: jiraChange.fields.summary,
       type: jiraChange.fields.issuetype.name,
       status: jiraChange.fields.status.name,
+      deploymentImpact: this.configuration.jiraDeploymentImpactField
+        ? jiraChange.fields[this.configuration.jiraDeploymentImpactField]
+        : undefined,
     };
   }
 }

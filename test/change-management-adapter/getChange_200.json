@@ -30,6 +30,7 @@
         },
         "timespent": null,
         "customfield_10030": null,
+        "field_id_deployment_impact": "impact",
         "project": {
           "self": "https://test.jira.atlassian.net/rest/api/2/project/10000",
           "id": "10000",
