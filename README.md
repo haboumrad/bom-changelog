@@ -84,17 +84,19 @@ The jira integration relies on the basic auth atlassian integration.
 More information about how obtaining the JIRA_USER and JIRA_TOKEN cab ne found d in the atlassian documentation at the following location:  https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/
 
 
-| variable   | Description | Example                       | 
-|------------|-------------|-------------------------------|
-| JIRA_USER  | jira user   | email                         |
-| JIRA_TOKEN | jira token  | password                      |
-| JIRA_URL   | jira url    | http://your-jira-instance.com |
-
+| variable                     | Description                                            | Example                       | 
+|------------------------------|--------------------------------------------------------|-------------------------------|
+| JIRA_USER                    | jira user                                              | email                         |
+| JIRA_TOKEN                   | jira token                                             | password                      |
+| JIRA_URL                     | jira url                                               | http://your-jira-instance.com |
+| JIRA_DEPLOYMENT_IMPACT_FIELD | filed name used in jira to descriebe deployment impact | custom_filed_1234             |
+JIRA_DEPLOYMENT_IMPACT_FIELD
 Sample file
 ```
 JIRA_USER=email
 JIRA_TOKEN=password
 JIRA_URL=http://your-jira-instance.com
+JIRA_DEPLOYMENT_IMPACT_FIELD=custom_field_1234
 ```
 
 ###~/.changelog/<CONTEXT_NAME>/.env.confluence-bom-change-log-exporter-adapter
