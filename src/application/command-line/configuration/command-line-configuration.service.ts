@@ -8,11 +8,17 @@ export class CommandLineConfigurationService {
   ) {}
 
   getChangeLogOptions(): ChangeLogOptions {
+    const changeprojectsafetodeploystatus = this.appConfigService.get<string>(
+      'CHANGE_PROJECT_SAFE_TO_DEPLOY_STATUS',
+    );
     return {
       changeManagement: {
         projectsPrefix: this.appConfigService
           .get<string>('CHANGE_PROJECT_PREFIX_FILTER')
           .split(','),
+        safeToDeployStatus: changeprojectsafetodeploystatus
+          ? changeprojectsafetodeploystatus.split(',')
+          : undefined,
       },
     };
   }
@@ -24,4 +30,5 @@ export type ChangeLogOptions = {
 
 export type ChangeManagementOptions = {
   projectsPrefix: string[];
+  safeToDeployStatus: string[];
 };

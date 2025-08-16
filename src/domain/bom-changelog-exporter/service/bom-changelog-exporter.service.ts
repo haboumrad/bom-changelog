@@ -6,6 +6,7 @@ import {
   SystemPageWithChangeLog,
 } from '../port/bom-exporter';
 import { RepoStatus } from '../../bom-diff/model/bom';
+import { ChangeLogOptions } from '../../../application/command-line/configuration/command-line-configuration.service';
 
 @Injectable()
 export class BomChangelogExporterService {
@@ -14,7 +15,10 @@ export class BomChangelogExporterService {
     private readonly bomExporter: BomExporter,
   ) {}
 
-  async exportChangeLog(bomChangeLog: BOMChangeLogResponse): Promise<void> {
+  async exportChangeLog(
+    bomChangeLog: BOMChangeLogResponse,
+    changeLogOptions: ChangeLogOptions,
+  ): Promise<void> {
     console.log(`Exporting bom changelog`);
     const systemPages: SystemPageWithChangeLog[] = [];
     for (const repositoryChangeLog of bomChangeLog.systems) {
@@ -58,6 +62,7 @@ export class BomChangelogExporterService {
       bomChangeLog.request.to,
       bomChangeLog.bomDiffUrl,
       systemPages,
+      changeLogOptions,
     );
   }
 

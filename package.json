@@ -1,6 +1,6 @@
 {
   "name": "@haboumrad/bom-changelog",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "changelog generation using github, jira and confluence",
   "author": "",
   "private": false,

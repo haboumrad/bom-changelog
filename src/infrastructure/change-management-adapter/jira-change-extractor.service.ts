@@ -6,6 +6,7 @@ import {
   JiraChangeExtractorConfiguration,
   JiraChangeExtractorConfigurationService,
 } from './configuration/jira-change-extractor-configuration.service';
+import * as process from 'node:process';
 
 @Injectable()
 export class JiraChangeExtractor implements ChangeExtractor {
@@ -37,6 +38,7 @@ export class JiraChangeExtractor implements ChangeExtractor {
   }
 
   private toChange(jiraChange: JiraChange): Change {
+    const assignee = jiraChange.fields.assignee?.emailAddress;
     return {
       id: jiraChange.key,
       url: `${this.configuration.jiraUrl}/browse/${jiraChange.key}`,
@@ -46,6 +48,7 @@ export class JiraChangeExtractor implements ChangeExtractor {
       deploymentImpact: this.configuration.jiraDeploymentImpactField
         ? jiraChange.fields[this.configuration.jiraDeploymentImpactField]
         : undefined,
+      assignee: assignee ? assignee : undefined,
     };
   }
 }
@@ -59,6 +62,9 @@ type JiraChange = {
     };
     status: {
       name: string;
+    };
+    assignee?: {
+      emailAddress?: string;
     };
     summary: string;
   };
