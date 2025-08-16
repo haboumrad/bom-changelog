@@ -27,6 +27,9 @@ export class AppEntrypointService {
     console.log(`====================`);
     console.log(`changelog export result`);
     console.log(`====================`);
-    await this.bomChangelogExporterService.exportChangeLog(bomChangeLog);
+    await this.bomChangelogExporterService.exportChangeLog(
+      bomChangeLog,
+      changeLogOptions,
+    );
   }
 }

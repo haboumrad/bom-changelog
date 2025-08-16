@@ -21,4 +21,5 @@ export type Change = {
   type: string;
   status: string;
   deploymentImpact?: string;
+  assignee: string;
 };

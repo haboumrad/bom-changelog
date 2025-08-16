@@ -49,6 +49,7 @@ Create the following files in a .changelog directory located in your home folder
 | variable                     | Description                                                                                                                            | Example             | 
 |------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|---------------------|
 | CHANGE_PROJECT_PREFIX_FILTER | Requests to jira will be made only if the matched scope of the parsed conventional commit match one of the PREFIX set in this variable | SAMPLE-PROJA-,PROJ- |
+| CHANGE_PROJECT_SAFE_TO_DEPLOY_STATUS | if this env var exist, then create a untested table in the bom reporting all the changes which status is not in this list      | Done,Tested         |
 
 Sample file
 ```

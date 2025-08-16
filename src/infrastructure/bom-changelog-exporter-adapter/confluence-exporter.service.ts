@@ -18,6 +18,7 @@ import {
   Commit,
   ConventionalCommit,
 } from '../../domain/repository-commit-parser/model/Commit';
+import { ChangeLogOptions } from '../../application/command-line/configuration/command-line-configuration.service';
 
 @Injectable()
 export class ConfluenceExporter implements BomExporter {
@@ -37,6 +38,7 @@ export class ConfluenceExporter implements BomExporter {
     to: Version,
     bomDiffUrl: string,
     systemPages: SystemPageWithChangeLog[],
+    changeLogOptions: ChangeLogOptions,
   ): Promise<BomPageId> {
     const { spaceKey, spaceId, pageId } = this.configuration.pages.boms;
     const bomReleaseNotePageId = await this.getPage(
@@ -51,6 +53,7 @@ export class ConfluenceExporter implements BomExporter {
         to,
         bomDiffUrl,
         systemPages,
+        changeLogOptions,
       );
       console.log(`generating bom release note page [${releaseNotePageName}]`);
       return this.createPage(spaceId, pageId, releaseNotePageName, pageContent);
@@ -326,6 +329,70 @@ export class ConfluenceExporter implements BomExporter {
     contentBuilder.appendTableEnd();
   }
 
+  private generateUntestedTable(
+    sectionName: string,
+    contentBuilder: ConfluenceContentBuilder,
+    systemPages: SystemPageWithChangeLog[],
+    changeLogOptions: ChangeLogOptions,
+  ): void {
+    contentBuilder.appendHeading(sectionName);
+    contentBuilder.appendTableStart([
+      'System',
+      'Key',
+      'Summary',
+      'Status',
+      'Committer',
+      'Change Assignee',
+    ]);
+    systemPages.forEach((system) => {
+      for (const changeWithCommit of system.repositoryChangeLog
+        .validChangeLog) {
+        const changeStatus = this.getChangeStatus(changeWithCommit);
+
+        if (
+          changeLogOptions.changeManagement.safeToDeployStatus.includes(
+            changeStatus,
+          )
+        ) {
+          continue;
+        }
+
+        contentBuilder.appendTableLineStart();
+        contentBuilder.appendTableLineColumnStart();
+        const repoStatus = system.repositoryChangeLog.repository.status;
+        contentBuilder.appendParagraph(
+          system.repositoryChangeLog.repository.systemRepository.label,
+          repoStatus,
+        );
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineColumnStart();
+        const [id, url] = this.getChangeId(changeWithCommit);
+        if (changeWithCommit.change) {
+          contentBuilder.appendLinkExternalUrl(id, url);
+        } else {
+          contentBuilder.appendParagraph(id);
+        }
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineColumnStart();
+        contentBuilder.appendParagraph(this.getChangeSummary(changeWithCommit));
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineColumnStart();
+        contentBuilder.appendParagraph(changeStatus);
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineColumnStart();
+        contentBuilder.appendParagraph(
+          changeWithCommit.conventionalCommit.commit.committer.name,
+        );
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineColumnStart();
+        contentBuilder.appendParagraph(changeWithCommit.change.assignee);
+        contentBuilder.appendTableLineColumnEnd();
+        contentBuilder.appendTableLineEnd();
+      }
+    });
+    contentBuilder.appendTableEnd();
+  }
+
   private generateChangeLogTable(
     sectionName: string,
     contentBuilder: ConfluenceContentBuilder,
@@ -373,6 +440,13 @@ export class ConfluenceExporter implements BomExporter {
     return changeWithCommit.conventionalCommit.type;
   }
 
+  private getChangeStatus(changeWithCommit: ChangeWithCommit): string {
+    if (changeWithCommit.change) {
+      return changeWithCommit.change.status;
+    }
+    return 'N/A';
+  }
+
   private getChangeSummary(changeWithCommit: ChangeWithCommit): string {
     if (changeWithCommit.change) {
       return changeWithCommit.change.summary;
@@ -395,6 +469,7 @@ export class ConfluenceExporter implements BomExporter {
     to: Version,
     bomDiffUrl: string,
     systemPages: SystemPageWithChangeLog[],
+    changeLogOptions: ChangeLogOptions,
   ): string {
     const contentBuilder = new ConfluenceContentBuilder();
     contentBuilder.appendHeading('Release note');
@@ -442,6 +517,15 @@ export class ConfluenceExporter implements BomExporter {
       contentBuilder,
       systemPages,
     );
+
+    if (changeLogOptions.changeManagement.safeToDeployStatus) {
+      this.generateUntestedTable(
+        'Untested issues',
+        contentBuilder,
+        systemPages,
+        changeLogOptions,
+      );
+    }
 
     contentBuilder.appendHeading('Changelog');
     contentBuilder.appendTableStart([

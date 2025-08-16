@@ -1,5 +1,10 @@
 import { plainToClass } from 'class-transformer';
-import { IsNotEmpty, IsString, validateSync } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  validateSync,
+} from 'class-validator';
 
 class CommandLineEnvironmentVariables {
   @IsString()
@@ -9,6 +14,10 @@ class CommandLineEnvironmentVariables {
   @IsString()
   @IsNotEmpty()
   CHANGE_PROJECT_PREFIX_FILTER!: string;
+
+  @IsString()
+  @IsOptional()
+  CHANGE_PROJECT_SAFE_TO_DEPLOY_STATUS!: string;
 }
 
 export const validateCommandLineEnvVars = (config: Record<string, unknown>) => {
