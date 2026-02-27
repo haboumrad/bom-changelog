@@ -385,7 +385,7 @@ export class ConfluenceExporter implements BomExporter {
         );
         contentBuilder.appendTableLineColumnEnd();
         contentBuilder.appendTableLineColumnStart();
-        contentBuilder.appendParagraph(changeWithCommit.change.assignee);
+        contentBuilder.appendParagraph(changeWithCommit.change?.assignee ?? 'unknown');
         contentBuilder.appendTableLineColumnEnd();
         contentBuilder.appendTableLineEnd();
       }
