@@ -51,7 +51,7 @@ export class GithubCommitExtractor implements CommitExtractor {
         },
       )
       .then((response) => {
-        if (response.status == 200) {
+        if (response?.status == 200) {
           return response.data.commits as GithubCommit[];
         }
         throw new Error(`Error while comparing. ${response}`);
