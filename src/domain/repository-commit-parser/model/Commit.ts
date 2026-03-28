@@ -1,3 +1,5 @@
+import * as conventionalCommitsParser from 'conventional-commits-parser';
+
 export type ParsedCommit = Commit | ConventionalCommit;
 
 export type ConventionalCommit = {
@@ -17,6 +19,6 @@ export type Commit = {
 };
 
 export const isConventionalCommit = (
-  commit: ParsedCommit,
+  commit:  conventionalCommitsParser.Commit
 ): commit is ConventionalCommit =>
   Boolean((commit as ConventionalCommit).scope);

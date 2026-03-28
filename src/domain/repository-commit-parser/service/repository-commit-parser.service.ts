@@ -23,7 +23,7 @@ export class RepositoryCommitParserService {
     );
     const result = new Map<string, ParsedCommit>(
       commits.map((commit) => {
-        const parsedCommit = conventionalCommitsParser.sync(commit.message);
+        const parsedCommit : conventionalCommitsParser.Commit = conventionalCommitsParser.sync(commit.message);
         if (isConventionalCommit(parsedCommit)) {
           const scope = parsedCommit.scope;
           return [
