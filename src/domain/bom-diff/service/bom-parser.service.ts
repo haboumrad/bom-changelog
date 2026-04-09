@@ -11,13 +11,16 @@ export class BomParserService {
     const bomContent = await this.bomReader.readFile(bomVersion);
     const parsedBomContent = YAML.parse(bomContent) as SystemsVersion;
     const systems = parsedBomContent.systems.map((systemVersion) => {
+      const selector = systemVersion.tagPattern
+          ? systemVersion.tagPattern.replace('{version}', systemVersion.version)
+          : systemVersion.version;
       return {
         repository: {
           label: systemVersion.name,
           name: systemVersion.url,
         },
         version: {
-          selector: systemVersion.version,
+          selector,
         },
       } as RepositoryVersion;
     });
@@ -43,4 +46,5 @@ type SystemVersion = {
   name: string;
   version: string;
   url: string;
+  tagPattern?: string;
 };
